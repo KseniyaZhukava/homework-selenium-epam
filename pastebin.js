@@ -1,10 +1,13 @@
-let webdriver = require('selenium-webdriver'),
+var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until;
  
-    let browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+    var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
  
 
 
 
     browser.get('https://pastebin.com/');
+    var txtInput = browser.findElement(By.id('postform-text'));
+    txtInput.sendKeys("selenium hT");
+    
