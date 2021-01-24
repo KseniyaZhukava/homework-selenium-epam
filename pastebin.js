@@ -9,5 +9,5 @@ var webdriver = require('selenium-webdriver'),
 
     browser.get('https://pastebin.com/');
     var txtInput = browser.findElement(By.id('postform-text'));
-    txtInput.sendKeys("selenium hT");
+    txtInput.sendKeys("Hello from WebDriver");
     
