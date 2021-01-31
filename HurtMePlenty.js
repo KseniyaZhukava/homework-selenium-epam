@@ -4,19 +4,24 @@ let webdriver = require('selenium-webdriver'),
 let browser = new webdriver.Builder().usingServer().withCapabilities({ 'browserName': 'chrome' }).build();
 
 browser.get('https://cloud.google.com/');
-let SearchEl = browser.findElement(By.xpath(".//input[@class='devsite-search-field devsite-search-query']"))
+let SearchEl = browser.findElement(By.xpath(".//input[@class='devsite-search-field devsite-search-query']"));
 let SearchRes = async function () {
-    await SearchEl.click()
-    await SearchEl.sendKeys("Google Cloud Platform Pricing Calculator")
-    await SearchEl.sendKeys(webdriver.Key.ENTER)
+    await SearchEl.click();
+    await SearchEl.sendKeys("Google Cloud Platform Pricing Calculator", webdriver.Key.ENTER);
 }
 
 let OpenPg = async function () {
-    await SearchRes()
-    await browser.findElement(By.xpath("//a[@class='gs-title']")).click()
+    await SearchRes();
+    let firstLink = browser.findElement(By.xpath(".//div[@class='gsc-expansionArea']/descendant::a[@class='gs-title'][1]"));
+    await firstLink.click();
 }
 
 OpenPg()
+
+
+
+
+
 
 
 // let a = browser.findElement(By.xpath(".//input[@class='devsite-search-field devsite-search-query']"));
