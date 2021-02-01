@@ -12,8 +12,7 @@ let SearchRes = async function () {
 
 let OpenPg = async function () {
     await SearchRes();
-    let firstLink = browser.findElement(By.xpath(".//div[@class='gsc-expansionArea']/descendant::a[@class='gs-title'][1]"));
-    await firstLink.click();
+    setTimeout(() => browser.findElement(By.xpath(".//div[@class='gsc-expansionArea']/descendant::a[@class='gs-title'][1]")).click(), 5000);
 }
 
 OpenPg()
