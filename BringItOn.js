@@ -1,9 +1,12 @@
-var webdriver = require('selenium-webdriver'),
-    By = webdriver.By;
+const assert = require('chai').assert;
+const webdriver = require('selenium-webdriver'),
+    // { describe, it, after, before } = require('selenium-webdriver/testing'),
+    By = webdriver.By,
+    until = webdriver.until;
 
-var browser = new webdriver.Builder().usingServer().withCapabilities({ 'browserName': 'chrome' }).build();
+let browser = new webdriver.Builder().usingServer().withCapabilities({ 'browserName': 'chrome' }).build();
+    browser.get('https://pastebin.com/');
 
-browser.get('https://pastebin.com/');
 browser.findElement(By.id('postform-text')).sendKeys('git config --global user.name  "New Sheriff in Town"', webdriver.Key.ENTER, 'git reset $(git commit-tree HEAD^{tree} -m "Legacy code")', webdriver.Key.ENTER, 'git push origin master --force');
 browser.findElement(By.id('postform-name')).sendKeys("how to gain dominance among developers");
     
@@ -25,6 +28,24 @@ let selectSmt3 = async function () {
     
 selectSmt3().then(
     () => browser.findElement(By.xpath("//button[text()='Create New Paste']")).click()
-)
+);
 
 
+
+describe('open pastebin home page', function () {
+
+    it('The syntax is suspended for bash', function(){
+        SyntaxHighlight = browser.findElement(By.xpath(".//a[text()='Bash']")).getText();
+        assert.equal(SyntaxHighlight, 'Bash');
+    });
+
+    it('Text of title contains Title', function () {
+        TabTitle = browser.findElement(By.xpath(".//title[text()='how to gain dominance among developers']")).getText();
+        assert.equal(TabTitle, "how to gain dominance among developers", "Text of title is wrong");
+    });
+
+    it('works with mocha', function(){
+
+    });
+
+    })
