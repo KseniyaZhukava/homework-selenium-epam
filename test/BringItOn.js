@@ -37,7 +37,7 @@ describe('open pastebin home page', function () {
     });
 
     it('Text of title contains Title', function () {
-        TabTitle = browser.findElement(By.xpath(".//title[text()='how to gain dominance among developers']")).getTitle();
+        TabTitle = browser.findElement(By.xpath(".//title[text()='how to gain dominance among developers']")).getText();
         assert.equal(TabTitle, "how to gain dominance among developers", "Text of title is wrong");
     });
 
