@@ -1,6 +1,4 @@
-const assert = require('chai').assert;
 const webdriver = require('selenium-webdriver'),
-    // { describe, it, after, before } = require('selenium-webdriver/testing'),
     By = webdriver.By,
     until = webdriver.until;
 
@@ -28,36 +26,3 @@ browser.findElement(By.id('postform-name')).sendKeys("how to gain dominance amon
     selectSmt3().then(
         () => browser.findElement(By.xpath("//button[text()='Create New Paste']")).click()
     );
-
-describe('open pastebin home page', function () {
-
-    beforeEach(function(){
-        
-    });
-
-    afterEach(function(){
-        browser.quit();
-    });
-
-    it('The syntax is suspended for Bash', function(){
-        SyntaxHighlight = browser.findElement(By.xpath(".//div[@class='left']/a[@class='btn -small h_800']")).getText();
-        assert.equal(SyntaxHighlight, "Bash", 'The syntax is NOT suspended for Bash');
-    });
-
-    it('Text of title contains "Title"', function () {
-        TabTitle = browser.findElement(By.xpath(".//title[text()='how to gain dominance among developers']")).getText();
-        assert.equal(TabTitle, "how to gain dominance among developers", "Text of title is wrong");
-    });
-
-    it('', function () {
-        Textarea = browser.findElement(By.xpath(".//textarea[@class='textarea']")).getText();
-        assert.equal(Textarea, 'git config --global user.name  "New Sheriff in Town"' + 
-        'git reset $(git commit-tree HEAD^{tree} -m "Legacy code")' + 
-        'git push origin master --force', "Text does not match")
-    })
-
-    it('works with mocha', function () {
-
-    });
-
-});
