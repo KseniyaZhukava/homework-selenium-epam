@@ -1,63 +1,44 @@
-const assert = require('chai').assert;
+const pastebin = require('../pageobjects/BringItOn');
 const webdriver = require('selenium-webdriver'),
     // { describe, it, after, before } = require('selenium-webdriver/testing'),
     By = webdriver.By,
     until = webdriver.until;
-
-let browser = new webdriver.Builder().usingServer().withCapabilities({ 'browserName': 'chrome' }).build();
-browser.get('https://pastebin.com/');
-
-browser.findElement(By.id('postform-text')).sendKeys('git config --global user.name  "New Sheriff in Town"', webdriver.Key.ENTER, 'git reset $(git commit-tree HEAD^{tree} -m "Legacy code")', webdriver.Key.ENTER, 'git push origin master --force');
-browser.findElement(By.id('postform-name')).sendKeys("how to gain dominance among developers");
-            
-    let selectSmt = async function () {
-        await browser.findElement(By.id('select2-postform-format-container')).click();
-        await browser.findElement(By.xpath(".//li[@class='select2-results__option']/preceding::li[text()='Bash']")).click();    
-    }
-            
-    let selectSmt2 = async function () {
-        await browser.findElement(By.id('select2-postform-expiration-container')).click();
-        await browser.findElement(By.xpath("//ul[@id='select2-postform-expiration-results']/li[text()='10 Minutes']")).click();
-    }
-            
-    let selectSmt3 = async function () {
-        await selectSmt();
-        await selectSmt2();
-    }
-            
-    selectSmt3().then(
-        () => browser.findElement(By.xpath("//button[text()='Create New Paste']")).click()
-    );
+const assert = require('chai').assert;
 
 describe('open pastebin home page', function () {
 
-    beforeEach(function(){
-        
-    });
+    this.beforeAll(() => {
+        pastebin.open();
+    })
 
-    afterEach(function(){
-        browser.quit();
-    });
+    it('Text in the textarea', function () {
+        pastebin.newPaste();
+        checkText = pastebin.newPasteField.getText();
+        assert.equal(checkText, 'git config --global user.name  "New Sheriff in Town" git reset $(git commit-tree HEAD^{tree} -m "Legacy code") git push origin master --force', "Text does not match")
+    })
 
     it('The syntax is suspended for Bash', function(){
-        SyntaxHighlight = browser.findElement(By.xpath(".//div[@class='left']/a[@class='btn -small h_800']")).getText();
-        assert.equal(SyntaxHighlight, "Bash", 'The syntax is NOT suspended for Bash');
+        pastebin.setSyntaxHigh();
+        pastebin.syntaxHigh.getText();
+        assert.equal(pastebin.syntaxHigh, "Bash", 'SyntaxHigh does not match');
+    });
+
+    it('pasteExpiration = 10 Minutes', function(){
+        pastebin.setPasteExpiration();
+        pastebin.pasteExpiration.getText();
+        assert.equal(pastebin.pasteExpiration, "10 Minutes", 'pasteExpiration does not match');
     });
 
     it('Text of title contains "Title"', function () {
-        TabTitle = browser.findElement(By.xpath(".//title[text()='how to gain dominance among developers']")).getText();
-        assert.equal(TabTitle, "how to gain dominance among developers", "Text of title is wrong");
+        pastebin.setTitle();
+        checkTitle = pastebin.titleName.getText();
+        assert.equal(checkTitle, "how to gain dominance among developers", "Title name does not match");
     });
-
-    it('', function () {
-        Textarea = browser.findElement(By.xpath(".//textarea[@class='textarea']")).getText();
-        assert.equal(Textarea, 'git config --global user.name  "New Sheriff in Town"' + 
-        'git reset $(git commit-tree HEAD^{tree} -m "Legacy code")' + 
-        'git push origin master --force', "Text does not match")
-    })
 
     it('works with mocha', function () {
 
     });
 
 });
+
+// document.title
