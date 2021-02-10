@@ -13,20 +13,20 @@ describe('open pastebin home page', function () {
 
     it('Text in the textarea', function () {
         pastebin.newPaste();
-        checkText = pastebin.newPasteField.getText();
+        checkText = pastebin.newPasteField().getText();
         assert.equal(checkText, 'git config --global user.name  "New Sheriff in Town" git reset $(git commit-tree HEAD^{tree} -m "Legacy code") git push origin master --force', "Text does not match")
     })
 
     it('The syntax is suspended for Bash', function(){
         pastebin.setSyntaxHigh();
-        pastebin.syntaxHigh.getText();
-        assert.equal(pastebin.syntaxHigh, "Bash", 'SyntaxHigh does not match');
+        checkSyntax = pastebin.syntaxHigh().getText();
+        assert.equal(checkSyntax, "Bash", 'SyntaxHigh does not match');
     });
 
     it('pasteExpiration = 10 Minutes', function(){
         pastebin.setPasteExpiration();
-        pastebin.pasteExpiration.getText();
-        assert.equal(pastebin.pasteExpiration, "10 Minutes", 'pasteExpiration does not match');
+        checkExpiration = pastebin.pasteExpiration().getText();
+        assert.equal(checkExpiration, "10 Minutes", 'pasteExpiration does not match');
     });
 
     it('Text of title contains "Title"', function () {
