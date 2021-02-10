@@ -16,19 +16,3 @@ let OpenPg = async function () {
 }
 
 OpenPg()
-
-
-
-
-
-
-
-// let a = browser.findElement(By.xpath(".//input[@class='devsite-search-field devsite-search-query']"));
-// a.click();
-// a.sendKeys("Google Cloud Platform Pricing Calculator").then(
-//     () => a.sendKeys(webdriver.Key.ENTER).then(() => 
-//     browser.findElement(By.xpath("//div[@class='gsc-expansionArea']/a[@class='gs-title']")).click())
-// )
-// browser.findElement(By.xpath("//div[@class='gsc-expansionArea']/div/div/div/div/a[@class='gs-title']")).click();
-
-// gsc-expansionArea
