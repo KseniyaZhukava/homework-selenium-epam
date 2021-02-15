@@ -2,14 +2,14 @@ const pastebin = require('../pageobjects/BringItOn');
 const assert = require('chai').assert;
 
 describe('open pastebin home page', function () {
-    this.timeout(10000000);
+    this.timeout(100000);
     this.beforeAll( async () => {
         await pastebin.open();
     })
 
-    this.afterAll(() => {
-        pastebin.browser.quit();
-    })
+    // this.afterAll(() => {
+    //     pastebin.browser.quit();
+    // })
 
     it('Text in the textarea', async function () {
         pastebin.newPaste();
@@ -32,21 +32,17 @@ describe('open pastebin home page', function () {
     it('Text of title contains "Title"', async function () {
         await pastebin.setTitle();
         let checkTitle = await pastebin.titleName.getAttribute("value");
-        assert.equal(checkTitle, "how to gain dominance among developers", "Title name does not match");
+        assert.equal(checkTitle, "how to gain dominance among developers" + "", "Title name does not match");
     });
 
     it('Create new paste', async function () {
         await pastebin.createNewPaste();
+        await pastebin.browser.sleep(10000);
     });
 
-    // pastebin.browser.sleep(10000);
-
-    it('Title contains Paste Name', async function (done) {
-        // setTimeout(() => {
+    it('Title contains Paste Name', async function () {
         let getTabTitle = await pastebin.tabTitle.getText();
-        assert.equal(getTabTitle, "how to gain dominance among developers", "Title name does not match");
-        done();
-    // }, 5000);
+        assert.isTrue(getTabTitle.includes("how to gain dominance among developers"));
     })
 
     it('Textarea contains Code', async function () {
