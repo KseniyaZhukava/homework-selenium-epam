@@ -32,18 +32,13 @@ describe('open pastebin home page', function () {
     it('Text of title contains "Title"', async function () {
         await pastebin.setTitle();
         let checkTitle = await pastebin.titleName.getAttribute("value");
-        assert.equal(checkTitle, "how to gain dominance among developers" + "", "Title name does not match");
+        assert.equal(checkTitle, "how to gain dominance among developers", "Title name does not match");
     });
 
     it('Create new paste', async function () {
         await pastebin.createNewPaste();
         await pastebin.browser.sleep(10000);
     });
-
-    it('Title contains Paste Name', async function () {
-        let getTabTitle = await pastebin.tabTitle.getText();
-        assert.isTrue(getTabTitle.includes("how to gain dominance among developers"));
-    })
 
     it('Textarea contains Code', async function () {
         let getCode = await pastebin.containText.getText();
@@ -55,5 +50,9 @@ describe('open pastebin home page', function () {
         assert.equal(getSyntax, "Bash", "Syntax does not match");
     })
 
+    it('Title contains Paste Name', async function () {
+        let getTabTitle = await pastebin.tabTitle.getText();
+        assert.isTrue(getTabTitle.includes('how to gain dominance among developers'), 'Title does not contain Paste Name');
+    })
 
 });
