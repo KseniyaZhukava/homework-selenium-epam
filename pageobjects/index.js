@@ -1,5 +1,5 @@
 
-let Pastebin = require( "./BringItOn");
+const Pastebin = require( "./BringItOn");
 
 let pastebin = new Pastebin();
 pastebin.open();
