@@ -1,5 +1,4 @@
 const webdriver = require('selenium-webdriver'),
-    // { describe, it, after, before } = require('selenium-webdriver/testing'),
     By = webdriver.By,
     until = webdriver.until;
 class Pastebin {
@@ -21,8 +20,9 @@ class Pastebin {
         this.browser = new webdriver.Builder().usingServer().withCapabilities({ 'browserName': 'chrome' }).build();
     }
 
-    open () {
-        this.browser.get('https://pastebin.com/');
+    async open () {
+        await this.browser.get('https://pastebin.com/');
+        await this.browser.manage().window().maximize();
     }
 
     newPaste () {
@@ -43,8 +43,8 @@ class Pastebin {
         await this.titleName.sendKeys("how to gain dominance among developers");
     }
 
-    createNewPaste () {
-        this.createbtn.click();
+    async createNewPaste () {
+        await this.createbtn.click();
     }
 
 }
