@@ -12,7 +12,7 @@ class Pastebin {
     get titleName () { return this.browser.findElement(By.xpath(".//input[@id='postform-name']")) }
     get createbtn () { return this.browser.findElement(By.xpath("//button[text()='Create New Paste']")) }
     // Pageobjects for results page
-    get tabTitle () { return this.browser.findElement(By.xpath("//head/title[1]")) }
+    get tabTitle () { return this.browser.findElement(By.xpath("//div[@class='info-top']/h1")) }
     get containText () { return this.browser.findElement(By.xpath("//textarea[@class='textarea']")) }
     get syntaxBash () { return this.browser.findElement(By.xpath("//div[@class='left']/a")) }
 
