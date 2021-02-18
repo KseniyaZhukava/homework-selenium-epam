@@ -51,7 +51,6 @@ describe('open pastebin home page', function () {
     })
 
     it('Title contains Paste Name', async function () {
-        (await pastebin.browser).sleep(5000);
         let getTabTitle = await pastebin.tabTitle.getText();
         assert.isTrue(getTabTitle.includes('how to gain dominance among developers'), 'Title does not contain Paste Name');
     })
